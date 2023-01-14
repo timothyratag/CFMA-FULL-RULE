@@ -1,0 +1,50 @@
+payload:
+  #Speedtest
+  - DOMAIN-KEYWORD,speedtest
+  - DOMAIN-SUFFIX,speedtest.net
+  - DOMAIN-SUFFIX,fast.com
+  - DOMAIN-SUFFIX,speedcheck.org
+  - DOMAIN-SUFFIX,speed.io
+  - DST-PORT,8080
+  - DST-PORT,5060
+  
+  # Download
+  - "+.apkcombo.com"
+  - "+.apkmirror.com"
+  - "+.apkpure.com"
+  - "+.cdnpure.com"
+  - "+.pureapk.com"
+  - "+.winudf.com"
+  - "+.mediafire.com"
+  - "+.drive.google.com"
+  - "+.zippyshare.com"
+  - "+.aptoide.com"
+  - "+.tubemate.net"
+  - "+.y2mate.com"
+  - "+.savefrom.net"
+  - "+.ssyoutube.com"
+  - "+.apkmody.io"
+  - "+.happymod.com"
+  - "+.rexdl.com"
+  - "+.moddroid.co"
+  - "+.jalantikus.com"
+  - "+.uptodown.com"
+
+  #Playstore
+  - DOMAIN-SUFFIX,googleapis.com
+  - DOMAIN-SUFFIX,gstatic.com
+  - DOMAIN-SUFFIX,google.com
+  - DOMAIN-SUFFIX,googleusercontent.com
+  - DOMAIN-SUFFIX,gvt1.com
+  - IP-CIDR,74.125.24.188/16
+  - IP-CIDR,172.217.194.188/16
+  - IP-CIDR,142.250.4.188/16
+  
+  - "+.play-fe.googleapis.com"
+  - "+.play-lh.googleusercontent.com"
+  - "+.play.google.com"
+  - "+.play.googleapis.com"
+  - "+.gvt1.com"
+  - "+.googlegame.com"
+  - "+.play.googlegame.com"
+  - "+.play-game.googleusercontent.com"
