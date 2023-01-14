@@ -1,0 +1,186 @@
+proxies:
+
+#MODE SALTO
+
+  - name: HERZA salto
+    server: 141.193.213.20
+    port: 80
+    type: vmess
+    uuid: 359c2f40-9377-11ed-b136-205c6d5f5d78
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: false
+    servername: 
+    network: ws
+    ws-opts: 
+      path: /fastssh
+      headers: 
+        Host: id-herza.vmess.sbs
+    udp: true
+    
+  - name: id-lb.vhax.net
+    server: 141.193.213.20
+    port: 443
+    type: vmess
+    uuid: 6fea1649-425b-4092-bf53-29792152c925
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: id-lb.vhax.net
+    network: ws
+    ws-opts: 
+      path: /sshkit/hibbnmkk/63c11bd582fb4/
+      headers: 
+        Host: id-lb.vhax.net
+    udp: true
+    
+  - name: IKD salto
+    server: 141.193.213.20
+    port: 80
+    type: vmess
+    uuid: b32cfab0-93a0-11ed-b034-205c6d5f5d78
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: false
+    servername: id-ikd.vmess.sbs
+    network: ws
+    ws-opts: 
+      path: /fastssh
+      headers: 
+        Host: id-ikd.vmess.sbs
+    udp: true
+    
+    #MODE SSL/SNI
+    
+  - name: IKD SNI
+    server: 103.180.125.230
+    port: 80
+    type: vmess
+    uuid: 0a281690-939f-11ed-b334-205c6d5f5d78
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: false
+    servername: st2.zoom.us
+    network: ws
+    ws-opts: 
+      path: /fastssh
+      headers: 
+        Host: st2.zoom.us
+    udp: true
+    
+  - name: HERZA SNI
+    server: 103.173.75.174
+    port: 80
+    type: vmess
+    uuid: 1a1551d0-93a0-11ed-b830-205c6d5f5d78
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: false
+    servername: st2.zoom.us
+    network: ws
+    ws-opts: 
+      path: /fastssh
+      headers: 
+        Host: st2.zoom.us
+    udp: true
+    
+  - name: LD SNI
+    server: 103.180.125.171
+    port: 80
+    type: vmess
+    uuid: 6fea1649-425b-4092-bf53-29792152c925
+    alterId: 0
+    cipher: auto
+    tls: false
+    skip-cert-verify: false
+    servername: st2.zoom.us
+    network: ws
+    ws-opts: 
+      path: /sshkit/grace0044/63c1f5195a50f/
+      headers: 
+        Host: st2.zoom.us
+    udp: true
+    
+    
+    #Contoh akun yaml
+    
+    
+  - name: socks 5
+    type: socks5
+    server: sg-socks5.woiden.net
+    port: 443
+    username: woiden_nonmewa16
+    password: 123tt
+    tls: true
+    skip-cert-verify: true
+    udp: true
+    sni: web.web.whatsapp.com
+
+  - name: VLESS WS+TLS
+    server: 104.17.2.81 # ISI IP BUG , JGN HOST BUG
+    port: 443
+    type: vless
+    uuid: *
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: api.midtrans.com # ISI HOST BUG , JGN IP BUG
+    network: ws
+    ws-opts:
+      path: ws://ISI.HOST.BUG/PATH.AKUN # CONTOH ws://api.midtrans.com/lycoris
+      headers:
+        Host: sg2.vless.co # ISI HOST AKUN
+    udp: true
+
+  - name: VMESS WS+TLS
+    server: 104.17.2.81 # ISI IP BUG , JGN HOST BUG
+    port: 443
+    type: vmess
+    uuid: *
+    alterId: 0
+    cipher: auto
+    tls: true
+    skip-cert-verify: true
+    servername: api.midtrans.com # ISI HOST BUG , JGN IP BUG
+    network: ws
+    ws-opts:
+      path: ws://ISI.HOST.BUG/PATH.AKUN # CONTOH ws://api.midtrans.com/lycoris
+      headers:
+        Host: sg3.v2-ray.com # ISI HOST AKUN
+    udp: true
+
+  - name: TROJAN WS+TLS
+    server: 104.17.2.81 # ISI IP BUG , JGN HOST BUG
+    port: 443
+    type: trojan
+    password: *
+    skip-cert-verify: true
+    sni: api.midtrans.com # ISI HOST BUG , JGN IP BUG 
+    network: ws
+    ws-opts:
+      path: ws://ISI.HOST.BUG/PATH.AKUN # CONTOH ws://api.midtrans.com/lycoris
+      headers:
+        Host: sg8-trojan.bonds.id # ISI HOST AKUN
+    udp: true
+
+  - name: SS WS+TLS
+    type: ss
+    server: 104.17.2.81
+    port: 443
+    cipher: 2022-blake3-aes-256-gcm
+    password: "V6M+um+YJmMFIy4ViriUvU7PoP8ljQiamClrTqmNwTw=:lteF4vqD1ydk4SxCgyFPZ911bgJPdRjKSj39b9jG/KI="
+    udp-over-tcp: true
+    plugin: v2ray-plugin
+    plugin-opts:
+      mode: websocket
+      host: cp92.vpsxc.my.id
+      path: wss://api.midtrans.com/ssws
+      tls: true
+      skip-cert-verify: true
+      mux: false
+      sni: api.midtrans.com
