@@ -1,0 +1,289 @@
+base-bug:
+  bug:
+    - &bug-ip1 172.67.199.34
+    - &bug-ip2 104.18.20.226
+    - &bug-ip3 104.18.21.226
+    - &bug-ip4 104.16.51.111
+    - &bug-ip5 104.18.30.185
+    - &bug-ip6 104.18.31.185
+    - &bug-ip7 104.18.27.170
+    - &bug-ip8 104.18.210.56
+    - &bug-ip9 172.64.149.82
+    - &bug-ip10 104.21.21.147
+    - &bug-ip11 104.16.53.111
+    - &bug-ip12 162.159.138.6
+    - &bug-ip13 104.21.8.121
+    - &bug-ip14 172.67.139.111
+    - &host-fastssh 103.253.24.76
+    - &host-dtc 38.47.65.22
+    - &host-shin 103.253.26.84
+    - &host-sgdo 128.199.126.151
+    - &host-rajasa 103.227.253.138
+    - &host-sgdov 128.199.68.243
+    - &host-herbal 128.199.126.151
+    - &host-rackh 103.125.14.14
+    - &host-howdy 103.253.24.216 #sghe3 howdy
+    - &host-2howdy 103.253.24.248
+    - &host-3howdy 103.253.24.212 
+    - &host-sshkit 103.180.125.171 
+    - &bug-s1 presence.teams.live.com
+    - &bug-s2 teams.microsoft.com
+    - &bug-s3 zoom.us
+    - &bug-s4 support.zoom.us
+    - &bug-s5 cdn.zoom.us
+    - &bug-s6 us07st-cf.zoom.us
+    - &bug-s7 careers.zoom.us
+    - &bug-s8 trouter2-azsc-uswe-3-a.trouter.teams.microsoft.com
+    - &bug-s9 us01st-cf.zoom.us
+    - &bug-s10 us02st-cf.zoom.us
+    - &bug-s11 us03st-cf.zoom.us
+    - &bug-s12 us04st-cf.zoom.us
+    - &bug-s13 us05st-cf.zoom.us
+    - &bug-s14 us06st-cf.zoom.us
+    - &bug-s15 gost-bk.zoom.us
+    - &bug-s16 billing.zoomgov.com
+    - &bug-s17 porting.zoomgov.com
+    - &bug-s18 marketplacecontent-cf.zoom.us
+    - &bug-s19 marketplacefront-cf.zoom.us
+    - &bug-s20 events.zoom.us
+    - &bug-s21 gomarketplacecontent-cf.zoom.us
+    - &bug-s22 brooklyn-cuny-edu.zoom.us
+    - &bug-s23 payhawk.zoom.us
+    - &bug-s24 nita.zoom.us
+    - &bug-s25 zhinst.zoom.us
+    - &bug-s26 teams.office.com
+    - &bug-s27 classroom.google.com
+    - &bug-s28 digicert.zoom.us
+    - &bug-s29 st1.zoom.us
+    - &bug-s30 st2.zoom.us
+    - &bug-s31 st3.zoom.us
+    - &bug-s32 support.liveon.id
+    - &bug-s33 zendesk1.appsflyer.com
+    - &bug-s34 beacon.liveon.id
+base-proxy:
+  vmess:
+    - &basevmess
+      type: vmess
+      alterId: 0
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true
+  trojan:
+    - &basetrojan
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+      network: ws
+  gfw:
+    - &basegrpc
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+base-proxy-group:
+  url:
+    - &url-gg http://www.gstatic.com/generate_204
+    - &url-cf http://cp.cloudflare.com/generate_204
+proxies:
+
+#howdy
+  - &trojanip
+    <<: *basetrojan
+    name: trojan1
+    server: *bug-ip1
+    password: 52a2f810-9d82-11ed-b137-225401db9d57
+    sni: sghe.tjvpn.org
+    ws-opts:
+      path: /fastssh
+      headers:
+        Host: sghe.tjvpn.org
+        Early-Data: 1
+  - <<: *trojanip
+    name: trojan2
+    server: *bug-ip2
+  - <<: *trojanip
+    name: trojan3
+    server: *bug-ip3
+  - <<: *trojanip
+    name: trojan4
+    server: *bug-ip4
+  - <<: *trojanip
+    name: trojan5
+    server: *bug-ip5
+  - <<: *trojanip
+    name: trojan6
+    server: *bug-ip6
+  - <<: *trojanip
+    name: trojan7
+    server: *bug-ip7
+  - <<: *trojanip
+    name: trojan8
+    server: *bug-ip8
+  - <<: *trojanip
+    name: trojan9
+    server: *bug-ip9
+  - <<: *trojanip
+    name: trojan10
+    server: *bug-ip10
+  - <<: *trojanip
+    name: trojan11
+    server: *bug-ip11
+  - <<: *trojanip
+    name: trojan12
+    server: *bug-ip12
+  - <<: *trojanip
+    name: trojan13
+    server: *bug-ip13
+  - <<: *trojanip
+    name: trojan14
+    server: *bug-ip14
+  - &trojansni
+    <<: *basetrojan
+    name: trojan s1
+    server: *host-fastssh
+    password: 52a2f810-9d82-11ed-b137-225401db9d57
+    sni: *bug-s1
+    ws-opts:
+      path: /fastssh
+      headers:
+        Host: *bug-s1
+        Early-Data: 1
+  - <<: *trojansni
+    name: trojan s2
+    sni: *bug-s2
+  - <<: *trojansni
+    name: trojan s3
+    sni: *bug-s3
+  - <<: *trojansni
+    name: trojan s4
+    sni: *bug-s4
+  - <<: *trojansni
+    name: trojan s5
+    sni: *bug-s5
+  - <<: *trojansni
+    name: trojan s6
+    sni: *bug-s6
+  - <<: *trojansni
+    name: trojan s7
+    sni: *bug-s7
+  - <<: *trojansni
+    name: trojan s8
+    sni: *bug-s8
+  - <<: *trojansni
+    name: trojan s9
+    sni: *bug-s9
+  - <<: *trojansni
+    name: trojan s10
+    sni: *bug-s10
+  - <<: *trojansni
+    name: trojan s11
+    sni: *bug-s11
+  - <<: *trojansni
+    name: trojan s12
+    sni: *bug-s12
+  - <<: *trojansni
+    name: trojan s13
+    sni: *bug-s13
+  - <<: *trojansni
+    name: trojan s14
+    sni: *bug-s14
+  - <<: *trojansni
+    name: trojan s15
+    sni: *bug-s15
+  - <<: *trojansni
+    name: trojan s16
+    sni: *bug-s16
+  - <<: *trojansni
+    name: trojan s17
+    sni: *bug-s17
+  - <<: *trojansni
+    name: trojan s18
+    sni: *bug-s18
+  - <<: *trojansni
+    name: trojan s19
+    sni: *bug-s19
+  - <<: *trojansni
+    name: trojan s20
+    sni: *bug-s20
+  - <<: *trojansni
+    name: trojan s21
+    sni: *bug-s21
+  - <<: *trojansni
+    name: trojan s22
+    sni: *bug-s22
+  - <<: *trojansni
+    name: trojan s23
+    sni: *bug-s23
+  - <<: *trojansni
+    name: trojan s24
+    sni: *bug-s24
+  - <<: *trojansni
+    name: trojan s25
+    sni: *bug-s25
+  - <<: *trojansni
+    name: trojan s26
+    sni: *bug-s26
+  - <<: *trojansni
+    name: trojan s27
+    sni: *bug-s27
+  - <<: *trojansni
+    name: trojan s28
+    sni: *bug-s28
+  - <<: *trojansni
+    name: trojan s29
+    sni: *bug-s29
+  - <<: *trojansni
+    name: trojan s30
+    sni: *bug-s30
+  - <<: *trojansni
+    name: trojan s31
+    sni: *bug-s31
+  - <<: *trojansni
+    name: trojan s32
+    sni: *bug-s32
+  - <<: *trojansni
+    name: trojan s33
+    sni: *bug-s33
+  - <<: *trojansni
+    name: trojan s34
+    sni: *bug-s34
+  - <<: *trojansni
+    name: trojan s35
+    sni: *bug-s35
+  - <<: *trojansni
+    name: trojan s36
+    sni: *bug-s36
+  - <<: *trojansni
+    name: trojan s37
+    sni: *bug-s37
+  - <<: *trojansni
+    name: trojan s38
+    sni: *bug-s38
+  - <<: *trojansni
+    name: trojan s39
+    sni: *bug-s39
+  - <<: *trojansni
+    name: trojan s40
+    sni: *bug-s40
+  - <<: *trojansni
+    name: trojan s41
+    sni: *bug-s41
+  - <<: *trojansni
+    name: trojan s42
+    sni: *bug-s42
+  - <<: *trojansni
+    name: trojan s43
+    sni: *bug-s43
+  - <<: *trojansni
+    name: trojan s44
+    sni: *bug-s44
+  - <<: *trojansni
+    name: trojan s45
+    sni: *bug-s45
+  - <<: *trojansni
+    name: trojan s46
+    sni: *bug-s46

@@ -1,0 +1,301 @@
+base-bug:
+  bug:
+    - &bug-ip1 172.67.199.34
+    - &bug-ip2 104.18.20.226
+    - &bug-ip3 104.18.21.226
+    - &bug-ip4 104.16.51.111
+    - &bug-ip5 104.18.30.185
+    - &bug-ip6 104.18.31.185
+    - &bug-ip7 104.18.27.170
+    - &bug-ip8 104.18.210.56
+    - &bug-ip9 172.64.149.82
+    - &bug-ip10 104.21.21.147
+    - &bug-ip11 104.16.53.111
+    - &bug-ip12 162.159.138.6
+    - &bug-ip13 104.21.8.121
+    - &bug-ip14 172.67.139.111
+    - &host-fastssh 103.253.24.76
+    - &host-dtc 38.47.65.22
+    - &host-shin 103.253.26.84
+    - &host-sgdo 128.199.126.151
+    - &host-rajasa 103.227.253.138
+    - &host-sgdov 128.199.68.243
+    - &host-herbal 128.199.126.151
+    - &host-rackh 103.125.14.14
+    - &host-howdy 103.253.24.216 #sghe1 howdy
+    - &host-2howdy 103.253.24.248
+    - &host-3howdy 103.253.24.212 
+    - &host-sshkit 103.180.125.171 
+    - &bug-s1 presence.teams.live.com
+    - &bug-s2 teams.microsoft.com
+    - &bug-s3 zoom.us
+    - &bug-s4 support.zoom.us
+    - &bug-s5 cdn.zoom.us
+    - &bug-s6 us07st-cf.zoom.us
+    - &bug-s7 careers.zoom.us
+    - &bug-s8 trouter2-azsc-uswe-3-a.trouter.teams.microsoft.com
+    - &bug-s9 us01st-cf.zoom.us
+    - &bug-s10 us02st-cf.zoom.us
+    - &bug-s11 us03st-cf.zoom.us
+    - &bug-s12 us04st-cf.zoom.us
+    - &bug-s13 us05st-cf.zoom.us
+    - &bug-s14 us06st-cf.zoom.us
+    - &bug-s15 gost-bk.zoom.us
+    - &bug-s16 billing.zoomgov.com
+    - &bug-s17 porting.zoomgov.com
+    - &bug-s18 marketplacecontent-cf.zoom.us
+    - &bug-s19 marketplacefront-cf.zoom.us
+    - &bug-s20 events.zoom.us
+    - &bug-s21 gomarketplacecontent-cf.zoom.us
+    - &bug-s22 brooklyn-cuny-edu.zoom.us
+    - &bug-s23 payhawk.zoom.us
+    - &bug-s24 nita.zoom.us
+    - &bug-s25 zhinst.zoom.us
+    - &bug-s26 teams.office.com
+    - &bug-s27 classroom.google.com
+    - &bug-s28 digicert.zoom.us
+    - &bug-s29 st1.zoom.us
+    - &bug-s30 st2.zoom.us
+    - &bug-s31 st3.zoom.us
+    - &bug-s32 support.liveon.id
+    - &bug-s33 beacon.liveon.id
+    - &bug-s34 zendesk1.appsflyer.com
+    - &bug-s35 zendesk2.appsflyer.com
+    - &bug-s36 zendesk3.appsflyer.com
+    - &bug-s37 zendesk4.appsflyer.com
+    - &bug-s38 af-banner-stg-static.appsflyer.com
+    - &bug-s39 cdn.appsflyer.com
+    - &bug-s40 learn.appsflyer.com
+    - &bug-s41 dev.appsflyer.com
+    - &bug-s42 dev.beam.nutanix.com
+    - &bug-s43 cdn.customlinks.appsflyer.com
+    - &bug-s44 cs50.readme.io
+    - &bug-s45 acheck21.readme.io
+    - &bug-s46 alphassl.com
+base-proxy:
+  vmess:
+    - &basevmess
+      type: vmess
+      alterId: 0
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true
+  trojan:
+    - &basetrojan
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+      network: ws
+  gfw:
+    - &basegrpc
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+base-proxy-group:
+  url:
+    - &url-gg http://www.gstatic.com/generate_204
+    - &url-cf http://cp.cloudflare.com/generate_204
+proxies:
+
+#howdy
+  - &howdyip
+    <<: *basetrojan
+    name: howdy1
+    server: *bug-ip1
+    password: 66aaa7a0-9e0e-11ed-9ca1-1239d0255272
+    sni: sg3-trojan.bonds.id
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: sg3-trojan.bonds.id
+        Early-Data: 1
+  - <<: *howdyip
+    name: howdy2
+    server: *bug-ip2
+  - <<: *howdyip
+    name: howdy3
+    server: *bug-ip3
+  - <<: *howdyip
+    name: howdy4
+    server: *bug-ip4
+  - <<: *howdyip
+    name: howdy5
+    server: *bug-ip5
+  - <<: *howdyip
+    name: howdy6
+    server: *bug-ip6
+  - <<: *howdyip
+    name: howdy7
+    server: *bug-ip7
+  - <<: *howdyip
+    name: howdy8
+    server: *bug-ip8
+  - <<: *howdyip
+    name: howdy9
+    server: *bug-ip9
+  - <<: *howdyip
+    name: howdy10
+    server: *bug-ip10
+  - <<: *howdyip
+    name: howdy11
+    server: *bug-ip11
+  - <<: *howdyip
+    name: howdy12
+    server: *bug-ip12
+  - <<: *howdyip
+    name: howdy13
+    server: *bug-ip13
+  - <<: *howdyip
+    name: howdy14
+    server: *bug-ip14
+  - &howdysni
+    <<: *basetrojan
+    name: howdy s1
+    server: *host-3howdy
+    password: 66aaa7a0-9e0e-11ed-9ca1-1239d0255272
+    sni: *bug-s1
+    ws-opts:
+      path: /howdy
+      headers:
+        Host: *bug-s1
+        Early-Data: 1
+  - <<: *howdysni
+    name: howdy s2
+    sni: *bug-s2
+  - <<: *howdysni
+    name: howdy s3
+    sni: *bug-s3
+  - <<: *howdysni
+    name: howdy s4
+    sni: *bug-s4
+  - <<: *howdysni
+    name: howdy s5
+    sni: *bug-s5
+  - <<: *howdysni
+    name: howdy s6
+    sni: *bug-s6
+  - <<: *howdysni
+    name: howdy s7
+    sni: *bug-s7
+  - <<: *howdysni
+    name: howdy s8
+    sni: *bug-s8
+  - <<: *howdysni
+    name: howdy s9
+    sni: *bug-s9
+  - <<: *howdysni
+    name: howdy s10
+    sni: *bug-s10
+  - <<: *howdysni
+    name: howdy s11
+    sni: *bug-s11
+  - <<: *howdysni
+    name: howdy s12
+    sni: *bug-s12
+  - <<: *howdysni
+    name: howdy s13
+    sni: *bug-s13
+  - <<: *howdysni
+    name: howdy s14
+    sni: *bug-s14
+  - <<: *howdysni
+    name: howdy s15
+    sni: *bug-s15
+  - <<: *howdysni
+    name: howdy s16
+    sni: *bug-s16
+  - <<: *howdysni
+    name: howdy s17
+    sni: *bug-s17
+  - <<: *howdysni
+    name: howdy s18
+    sni: *bug-s18
+  - <<: *howdysni
+    name: howdy s19
+    sni: *bug-s19
+  - <<: *howdysni
+    name: howdy s20
+    sni: *bug-s20
+  - <<: *howdysni
+    name: howdy s21
+    sni: *bug-s21
+  - <<: *howdysni
+    name: howdy s22
+    sni: *bug-s22
+  - <<: *howdysni
+    name: howdy s23
+    sni: *bug-s23
+  - <<: *howdysni
+    name: howdy s24
+    sni: *bug-s24
+  - <<: *howdysni
+    name: howdy s25
+    sni: *bug-s25
+  - <<: *howdysni
+    name: howdy s26
+    sni: *bug-s26
+  - <<: *howdysni
+    name: howdy s27
+    sni: *bug-s27
+  - <<: *howdysni
+    name: howdy s28
+    sni: *bug-s28
+  - <<: *howdysni
+    name: howdy s29
+    sni: *bug-s29
+  - <<: *howdysni
+    name: howdy s30
+    sni: *bug-s30
+  - <<: *howdysni
+    name: howdy s31
+    sni: *bug-s31
+  - <<: *howdysni
+    name: howdy s32
+    sni: *bug-s32
+  - <<: *howdysni
+    name: howdy s33
+    sni: *bug-s33
+  - <<: *howdysni
+    name: howdy s34
+    sni: *bug-s34
+  - <<: *howdysni
+    name: howdy s35
+    sni: *bug-s35
+  - <<: *howdysni
+    name: howdy s36
+    sni: *bug-s36
+  - <<: *howdysni
+    name: howdy s37
+    sni: *bug-s37
+  - <<: *howdysni
+    name: howdy s38
+    sni: *bug-s38
+  - <<: *howdysni
+    name: howdy s39
+    sni: *bug-s39
+  - <<: *howdysni
+    name: howdy s40
+    sni: *bug-s40
+  - <<: *howdysni
+    name: howdy s41
+    sni: *bug-s41
+  - <<: *howdysni
+    name: howdy s42
+    sni: *bug-s42
+  - <<: *howdysni
+    name: howdy s43
+    sni: *bug-s43
+  - <<: *howdysni
+    name: howdy s44
+    sni: *bug-s44
+  - <<: *howdysni
+    name: howdy s45
+    sni: *bug-s45
+  - <<: *howdysni
+    name: howdy s46
+    sni: *bug-s46
