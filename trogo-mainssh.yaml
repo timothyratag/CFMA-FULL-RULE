@@ -1,0 +1,311 @@
+base-bug:
+  bug:
+    - &bug-ip1 172.67.199.34
+    - &bug-ip2 104.18.20.226
+    - &bug-ip3 104.18.21.226
+    - &bug-ip4 104.16.51.111
+    - &bug-ip5 104.18.30.185
+    - &bug-ip6 104.18.31.185
+    - &bug-ip7 104.18.27.170
+    - &bug-ip8 104.18.210.56
+    - &bug-ip9 172.64.149.82
+    - &bug-ip10 104.21.21.147
+    - &bug-ip11 104.16.53.111
+    - &bug-ip12 162.159.138.6
+    - &bug-ip13 104.21.8.121
+    - &bug-ip14 172.67.139.111
+    - &host-nusa 43.229.254.206
+    - &host-dtc 38.47.65.22
+    - &host-shin 103.253.26.84
+    - &host-sgdo 128.199.126.151
+    - &host-rajasa 103.227.253.138
+    - &host-sgdov 128.199.68.243
+    - &host-mainssh-trogo  103.83.159.248
+    - &host-mainssh-vless 103.83.159.164
+    - &host-howdy 103.253.24.216 #sghe3 howdy
+    - &host-2howdy 103.253.24.248
+    - &host-3howdy 103.253.24.212 
+    - &host-sshkit 103.180.125.171 
+    - &bug-s1 presence.teams.live.com
+    - &bug-s2 teams.microsoft.com
+    - &bug-s3 zoom.us
+    - &bug-s4 support.zoom.us
+    - &bug-s5 cdn.zoom.us
+    - &bug-s6 us07st-cf.zoom.us
+    - &bug-s7 careers.zoom.us
+    - &bug-s8 trouter2-azsc-uswe-3-a.trouter.teams.microsoft.com
+    - &bug-s9 us01st-cf.zoom.us
+    - &bug-s10 us02st-cf.zoom.us
+    - &bug-s11 us03st-cf.zoom.us
+    - &bug-s12 us04st-cf.zoom.us
+    - &bug-s13 us05st-cf.zoom.us
+    - &bug-s14 us06st-cf.zoom.us
+    - &bug-s15 gost-bk.zoom.us
+    - &bug-s16 billing.zoomgov.com
+    - &bug-s17 porting.zoomgov.com
+    - &bug-s18 marketplacecontent-cf.zoom.us
+    - &bug-s19 marketplacefront-cf.zoom.us
+    - &bug-s20 events.zoom.us
+    - &bug-s21 gomarketplacecontent-cf.zoom.us
+    - &bug-s22 brooklyn-cuny-edu.zoom.us
+    - &bug-s23 payhawk.zoom.us
+    - &bug-s24 nita.zoom.us
+    - &bug-s25 zhinst.zoom.us
+    - &bug-s26 teams.office.com
+    - &bug-s27 classroom.google.com
+    - &bug-s28 digicert.zoom.us
+    - &bug-s29 st1.zoom.us
+    - &bug-s30 st2.zoom.us
+    - &bug-s31 st3.zoom.us
+    - &bug-s32 support.liveon.id
+    - &bug-s33 beacon.liveon.id
+    - &bug-s34 zendesk1.appsflyer.com
+    - &bug-s35 zendesk2.appsflyer.com
+    - &bug-s36 zendesk3.appsflyer.com
+    - &bug-s37 zendesk4.appsflyer.com
+    - &bug-s38 af-banner-stg-static.appsflyer.com
+    - &bug-s39 cdn.appsflyer.com
+    - &bug-s40 learn.appsflyer.com
+    - &bug-s41 dev.appsflyer.com
+    - &bug-s42 dev.beam.nutanix.com
+    - &bug-s43 cdn.customlinks.appsflyer.com
+    - &bug-s44 cs50.readme.io
+    - &bug-s45 acheck21.readme.io
+    - &bug-s46 alphassl.com
+base-proxy:
+  vmess:
+    - &basevmess
+      type: vmess
+      alterId: 0
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true
+  vless:
+    - &basevless
+      type: vless
+      cipher: auto
+      udp: true
+      udp-over-tcp: true
+      network: ws
+      tls: true
+      skip-cert-verify: true
+  trojan:
+    - &basetrojan
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+      network: ws
+  gfw:
+    - &basegrpc
+      type: trojan
+      port: 443
+      udp: true
+      skip-cert-verify: true
+base-proxy-group:
+  url:
+    - &url-gg http://www.gstatic.com/generate_204
+    - &url-cf http://cp.cloudflare.com/generate_204
+proxies:
+
+  - &trogoip
+    <<: *basetrojan
+    name: lb1
+    server: *bug-ip1
+    port: 443
+    password: mainssh-nomewa11
+    servername: sg2tws.mainssh.xyz
+    ws-opts: 
+      path: /trojan
+      headers: 
+        Host: sg2tws.mainssh.xyz
+        Early-Data: 1
+  - <<: *trogoip
+    name: lb2
+    server: *bug-ip2
+  - <<: *trogoip
+    name: lb3
+    server: *bug-ip3
+  - <<: *trogoip
+    name: lb4
+    server: *bug-ip4
+  - <<: *trogoip
+    name: lb5
+    server: *bug-ip5
+  - <<: *trogoip
+    name: lb6
+    server: *bug-ip6
+  - <<: *trogoip
+    name: lb7
+    server: *bug-ip7
+  - <<: *trogoip
+    name: lb8
+    server: *bug-ip8
+  - <<: *trogoip
+    name: lb9
+    server: *bug-ip9
+  - <<: *trogoip
+    name: lb10
+    server: *bug-ip10
+  - <<: *trogoip
+    name: lb11
+    server: *bug-ip11
+  - <<: *trogoip
+    name: lb12
+    server: *bug-ip12
+  - <<: *trogoip
+    name: lb13
+    server: *bug-ip13
+  - <<: *trogoip
+    name: lb14
+    server: *bug-ip14
+  - &trogosni
+    <<: *basevless
+    name: lb s1
+    server: *host-mainssh-trogo
+    port: 443
+    password: mainssh-nomewa11
+    servername: *bug-s1
+    ws-opts: 
+      path: /trojan
+      headers: 
+        Host: *bug-s1
+        Early-Data: 1
+  - <<: *trogosni
+    name: lb s2
+    servername: *bug-s2
+  - <<: *trogosni
+    name: lb s3
+    servername: *bug-s3
+  - <<: *trogosni
+    name: lb s4
+    servername: *bug-s4
+  - <<: *trogosni
+    name: lb s5
+    servername: *bug-s5
+  - <<: *trogosni
+    name: lb s6
+    servername: *bug-s6
+  - <<: *trogosni
+    name: lb s7
+    servername: *bug-s7
+  - <<: *trogosni
+    name: lb s8
+    servername: *bug-s8
+  - <<: *trogosni
+    name: lb s9
+    servername: *bug-s9
+  - <<: *trogosni
+    name: lb s10
+    servername: *bug-s10
+  - <<: *trogosni
+    name: lb s11
+    servername: *bug-s11
+  - <<: *trogosni
+    name: lb s12
+    servername: *bug-s12
+  - <<: *trogosni
+    name: lb s13
+    servername: *bug-s13
+  - <<: *trogosni
+    name: lb s14
+    servername: *bug-s14
+  - <<: *trogosni
+    name: lb s15
+    servername: *bug-s15
+  - <<: *trogosni
+    name: lb s16
+    servername: *bug-s16
+  - <<: *trogosni
+    name: lb s17
+    servername: *bug-s17
+  - <<: *trogosni
+    name: lb s18
+    servername: *bug-s18
+  - <<: *trogosni
+    name: lb s19
+    servername: *bug-s19
+  - <<: *trogosni
+    name: lb s20
+    servername: *bug-s20
+  - <<: *trogosni
+    name: lb s21
+    servername: *bug-s21
+  - <<: *trogosni
+    name: lb s22
+    servername: *bug-s22
+  - <<: *trogosni
+    name: lb s23
+    servername: *bug-s23
+  - <<: *trogosni
+    name: lb s24
+    servername: *bug-s24
+  - <<: *trogosni
+    name: lb s25
+    servername: *bug-s25
+  - <<: *trogosni
+    name: lb s26
+    servername: *bug-s26
+  - <<: *trogosni
+    name: lb s27
+    servername: *bug-s27
+  - <<: *trogosni
+    name: lb s28
+    servername: *bug-s28
+  - <<: *trogosni
+    name: lb s29
+    servername: *bug-s29
+  - <<: *trogosni
+    name: lb s30
+    servername: *bug-s30
+  - <<: *trogosni
+    name: lb s31
+    servername: *bug-s31
+  - <<: *trogosni
+    name: lb s32
+    servername: *bug-s32
+  - <<: *trogosni
+    name: lb s33
+    servername: *bug-s33
+  - <<: *trogosni
+    name: lb s34
+    servername: *bug-s34
+  - <<: *trogosni
+    name: lb s35
+    servername: *bug-s35
+  - <<: *trogosni
+    name: lb s36
+    servername: *bug-s36
+  - <<: *trogosni
+    name: lb s37
+    servername: *bug-s37
+  - <<: *trogosni
+    name: lb s38
+    servername: *bug-s38
+  - <<: *trogosni
+    name: lb s39
+    servername: *bug-s39
+  - <<: *trogosni
+    name: lb s40
+    servername: *bug-s40
+  - <<: *trogosni
+    name: lb s41
+    servername: *bug-s41
+  - <<: *trogosni
+    name: lb s42
+    servername: *bug-s42
+  - <<: *trogosni
+    name: lb s43
+    servername: *bug-s43
+  - <<: *trogosni
+    name: lb s44
+    servername: *bug-s44
+  - <<: *trogosni
+    name: lb s45
+    servername: *bug-s45
+  - <<: *trogosni
+    name: lb s46
+    servername: *bug-s46

@@ -107,12 +107,12 @@ proxies:
     <<: *basetrojan
     name: trojan1
     server: *bug-ip1
-    password: 52a2f810-9d82-11ed-b137-225401db9d57
-    sni: sghe.tjvpn.org
+    password: jagoanssh-nomew18
+    sni: id2go.ipservers.xyz
     ws-opts:
-      path: /fast
+      path: /trojan
       headers:
-        Host: sghe.tjvpn.org
+        Host: id2go.ipservers.xyz
         Early-Data: 1
   - <<: *ip
     name: trojan2
@@ -157,11 +157,11 @@ proxies:
   - &sni
     <<: *basetrojan
     name: trojan s1
-    server: *host-fastssh
-    password: 52a2f810-9d82-11ed-b137-225401db9d57
+    server: *host-TjJagoan
+    password: jagoanssh-nomew18
     sni: *bug-s1
     ws-opts:
-      path: /fastssh
+      path: /trojan
       headers:
         Host: *bug-s1
         Early-Data: 1

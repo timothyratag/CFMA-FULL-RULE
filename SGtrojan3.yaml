@@ -22,9 +22,9 @@ base-bug:
     - &host-sgdov 128.199.68.243
     - &host-herbal 128.199.126.151
     - &host-rackh 103.125.14.14
-    - &host-howdy 103.253.24.212 #sghe1 howdy
+    - &host-howdy 103.253.24.216 #sghe1 howdy
     - &host-2howdy 103.253.24.248
-    - &host-3howdy 103.253.24.216 #sghe3 howd
+    - &host-3howdy 103.253.24.212 #sghe3 howd
     - &host-sshkit 103.180.125.171 
     - &bug-s1 presence.teams.live.com
     - &bug-s2 teams.microsoft.com
@@ -107,12 +107,12 @@ proxies:
     <<: *basetrojan
     name: trojan1
     server: *bug-ip1
-    password: 52a2f810-9d82-11ed-b137-225401db9d57
-    sni: sghe.tjvpn.org
+    password: 2602d8d0-a497-11ed-a46a-1239d0255272
+    sni: sg3-trojan.bonds.id
     ws-opts:
-      path: /fast
+      path: /howdy
       headers:
-        Host: sghe.tjvpn.org
+        Host: sg3-trojan.bonds.id
         Early-Data: 1
   - <<: *ip
     name: trojan2
@@ -157,11 +157,11 @@ proxies:
   - &sni
     <<: *basetrojan
     name: trojan s1
-    server: *host-fastssh
-    password: 52a2f810-9d82-11ed-b137-225401db9d57
+    server: *host-3howdy
+    password: 2602d8d0-a497-11ed-a46a-1239d0255272
     sni: *bug-s1
     ws-opts:
-      path: /fastssh
+      path: /howdy
       headers:
         Host: *bug-s1
         Early-Data: 1
